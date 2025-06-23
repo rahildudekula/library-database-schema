@@ -1,39 +1,16 @@
--- Create schema
-CREATE SCHEMA IF NOT EXISTS ecommerce;
+# Library System - SQL Project
 
--- Create customers table
-CREATE TABLE ecommerce.customers (
-    customer_id SERIAL PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+## Description
+This project is a simple library system database schema designed using MySQL. It includes three main tables:
+- Students
+- Books
+- BorrowRecords
 
--- Create products table
-CREATE TABLE ecommerce.products (
-    product_id SERIAL PRIMARY KEY,
-    product_name VARCHAR(100) NOT NULL,
-    price NUMERIC(10, 2) NOT NULL,
-    stock_quantity INT DEFAULT 0
-);
+## Files Included
+- `library_schema.sql` - SQL script to create the database and tables
+- `library_er_diagram.png` - ER diagram showing table relationships
 
--- Create orders table
-CREATE TABLE ecommerce.orders (
-    order_id SERIAL PRIMARY KEY,
-    customer_id INT NOT NULL,
-    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    total_amount NUMERIC(10, 2),
-    FOREIGN KEY (customer_id) REFERENCES ecommerce.customers(customer_id)
-);
-
--- Create order_items table
-CREATE TABLE ecommerce.order_items (
-    order_item_id SERIAL PRIMARY KEY,
-    order_id INT NOT NULL,
-    product_id INT NOT NULL,
-    quantity INT NOT NULL,
-    item_price NUMERIC(10, 2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES ecommerce.orders(order_id),
-    FOREIGN KEY (product_id) REFERENCES ecommerce.products(product_id)
-);
+## How to Use
+1. Open MySQL Workbench or any SQL editor.
+2. Run the script in `library_schema.sql`.
+3. Review the ER diagram for understanding table relationships.
